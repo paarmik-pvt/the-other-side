@@ -313,7 +313,7 @@
         return;
       }
       if (confirm(`Delete the last post?\n\n"${posts[0].title}"`)) {
-        posts.shift(); // removes the newest post
+        posts.shift();
         localStorage.setItem("tos_posts", JSON.stringify(posts));
         renderPosts();
         goHome();
@@ -331,13 +331,13 @@
 
     function showPost(post) {
       let media = "";
-      if (post.image) media = `<img src="${post.image}" alt="">`;
-      else if (post.video) {
-        if (post.video.includes("youtube") || post.video.includes("youtu.be")) {
-          const id = post.video.split("v=")[1] || post.video.split("/").pop();
-          media = `<iframe src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
-        } else media = `<video controls><source src="${post.video}" type="video/mp4"></video>`;
+      if (post.image) {
+        media = `<img src="${post.image}" alt="">`;
+      } else if (post.video) {
+        // Clickable link instead of embedded
+        media = `<a href="${post.video}" target="_blank" style="display:block; text-align:center; padding:80px 0; background:#000; color:white; font-size:18px; text-decoration:none;">▶ Watch Video</a>`;
       }
+
       document.getElementById("modalMedia").innerHTML = media || "";
       document.getElementById("modalBody").innerHTML = `<h1>${post.title}</h1><p style="color:#777;margin-bottom:30px;">${post.date}</p><div style="font-size:18px;line-height:1.8;">${post.content.replace(/\n/g, "<br>")}</div>`;
       document.getElementById("modal").style.display = "block";
@@ -345,8 +345,8 @@
 
     function createCard(p) {
       const media = p.image ? `<img src="${p.image}" alt="">` :
-                    p.video ? (p.video.includes("youtube") ? `<iframe src="${p.video.replace("watch?v=", "embed/")}" frameborder="0" allowfullscreen></iframe>` :
-                    `<video muted><source src="${p.video}"></video>`) : `<div style="height:200px;background:#f0f0f0;"></div>`;
+                    p.video ? `<div style="height:200px;background:#000; display:flex;align-items:center;justify-content:center;color:white;font-size:16px;">▶ Video</div>` :
+                    `<div style="height:200px;background:#f0f0f0;"></div>`;
 
       return `<div class="card" onclick='showPost(${JSON.stringify(p).replace(/'/g, "&apos;")})'>
         ${media}
@@ -376,4 +376,6 @@
 
 
 
+
 © 2025 The Other Side (TOS). News Verified by The TOS BUREAU.
+
