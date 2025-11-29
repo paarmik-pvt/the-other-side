@@ -14,6 +14,7 @@
       color: #111;
       line-height: 1.7;
     }
+
     header {
       background: white;
       padding: 20px 40px;
@@ -22,6 +23,7 @@
       top: 0;
       z-index: 100;
     }
+
     .nav-container {
       max-width: 1400px;
       margin: 0 auto;
@@ -29,12 +31,15 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .logo img { height: 48px; }
+
     nav ul {
       list-style: none;
       display: flex;
       gap: 40px;
     }
+
     nav a {
       text-decoration: none;
       color: #333;
@@ -42,7 +47,36 @@
       font-size: 15px;
       transition: color 0.2s;
     }
+
     nav a:hover { color: #000; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #111;
+      border-radius: 2px;
+    }
+
+    nav.mobile-active ul {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 20px 0;
+      border-top: 1px solid #eee;
+    }
 
     .hero {
       height: 100vh;
@@ -52,7 +86,9 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 0 20px;
     }
+
     .hero h1 {
       font-size: 110px;
       font-weight: 700;
@@ -66,18 +102,21 @@
       margin: 0 auto;
       padding: 80px 20px;
     }
+
     .section-title {
       font-size: 32px;
       font-weight: 600;
       margin-bottom: 40px;
       color: #111;
     }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 40px;
       margin-bottom: 80px;
     }
+
     .card {
       background: white;
       border-radius: 8px;
@@ -85,21 +124,23 @@
       cursor: pointer;
       transition: transform 0.25s;
     }
-    .card:hover {
-      transform: translateY(-6px);
-    }
+
+    .card:hover { transform: translateY(-6px); }
+
     .card img, .card video, .card iframe {
       width: 100%;
       height: 200px;
       object-fit: cover;
       background: #000;
     }
+
     .card h3 {
       padding: 20px;
       font-size: 19px;
       font-weight: 600;
       line-height: 1.4;
     }
+
     .card .date {
       padding: 0 20px 20px;
       font-size: 13px;
@@ -115,6 +156,7 @@
       text-align: center;
       letter-spacing: 0.5px;
     }
+
     .live-bar::before {
       content: "● LIVE ";
       color: #ff3333;
@@ -130,12 +172,16 @@
       overflow-y: auto;
       padding: 60px 20px;
     }
+
     .modal-content { max-width: 800px; margin: 0 auto; }
+
     .modal-header img, .modal-header video, .modal-header iframe {
       width: 100%; height: 400px; object-fit: cover;
     }
+
     .modal-body { padding: 40px 0; font-size: 18px; }
     .modal-body h1 { font-size: 40px; margin-bottom: 16px; font-weight: 700; }
+
     .close-modal {
       position: absolute;
       top: 20px; right: 30px;
@@ -163,24 +209,28 @@
       padding: 40px 20px;
       overflow-y: auto;
     }
+
     #adminPanel h2 {
       text-align: center;
       font-size: 28px;
       margin-bottom: 40px;
       font-weight: 600;
     }
+
     #adminPanel input, #adminPanel textarea, #adminPanel select {
       width: 100%; max-width: 600px;
       display: block; margin: 16px auto;
       padding: 14px; border: 1px solid #ddd;
       border-radius: 6px; font-size: 16px;
     }
+
     #adminPanel button {
       background: #000; color: white;
       padding: 14px 32px; border: none;
       border-radius: 6px; cursor: pointer;
       font-weight: 500; margin: 10px;
     }
+
     .back-btn {
       position: absolute;
       top: 20px; left: 30px;
@@ -189,11 +239,37 @@
       color: #333; padding: 10px;
     }
 
+    /* Mobile adjustments */
+    @media (max-width: 1024px) {
+      nav ul { gap: 20px; font-size: 14px; }
+    }
+
     @media (max-width: 768px) {
       .hero h1 { font-size: 64px; letter-spacing: 6px; }
-      nav ul { gap: 20px; font-size: 14px; }
       .section-title { font-size: 28px; }
-      .cards { gap: 30px; }
+      .cards { gap: 30px; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); }
+      .card h3 { font-size: 16px; }
+      .card .date { font-size: 12px; }
+
+      .hamburger { display: flex; }
+
+      nav ul { display: none; }
+      nav.mobile-active ul { display: flex; }
+
+      .modal-content { width: 95%; padding: 20px; }
+      .modal-header img, .modal-header video, .modal-header iframe { height: 250px; }
+
+      #adminPanel { padding: 20px 10px; }
+      #adminPanel input, #adminPanel textarea, #adminPanel select { width: 90%; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 36px; letter-spacing: 2px; }
+      nav ul { gap: 10px; justify-content: center; }
+      .card h3 { font-size: 14px; }
+      .card .date { font-size: 11px; }
+      .live-bar { font-size: 12px; padding: 10px 5px; }
+      .admin-btn { width: 48px; height: 48px; font-size: 20px; }
     }
   </style>
 </head>
@@ -204,7 +280,12 @@
       <div class="logo">
         <img src="TOS.png" alt="The Other Side" />
       </div>
-      <nav>
+      <nav id="nav">
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#">World</a></li>
@@ -272,6 +353,10 @@
     const PASSWORD = "uncle123";
     let posts = JSON.parse(localStorage.getItem("tos_posts")) || [];
 
+    function toggleMenu() {
+      document.getElementById("nav").classList.toggle("mobile-active");
+    }
+
     function checkPassword() {
       if (document.getElementById("adminPass").value === PASSWORD) {
         document.getElementById("postForm").style.display = "block";
@@ -282,9 +367,7 @@
 
     function openAdmin() { document.getElementById("adminPanel").style.display = "block"; }
 
-    function goHome() {
-      document.getElementById("adminPanel").style.display = "none";
-    }
+    function goHome() { document.getElementById("adminPanel").style.display = "none"; }
 
     function addPost() {
       const title = document.getElementById("title").value.trim();
@@ -308,10 +391,7 @@
     }
 
     function deleteLastPost() {
-      if (posts.length === 0) {
-        alert("No posts to delete");
-        return;
-      }
+      if (posts.length === 0) { alert("No posts to delete"); return; }
       if (confirm(`Delete the last post?\n\n"${posts[0].title}"`)) {
         posts.shift();
         localStorage.setItem("tos_posts", JSON.stringify(posts));
@@ -334,7 +414,6 @@
       if (post.image) {
         media = `<img src="${post.image}" alt="">`;
       } else if (post.video) {
-        // Clickable link instead of embedded
         media = `<a href="${post.video}" target="_blank" style="display:block; text-align:center; padding:80px 0; background:#000; color:white; font-size:18px; text-decoration:none;">▶ Watch Video</a>`;
       }
 
@@ -377,5 +456,7 @@
 
 
 
+
 © 2025 The Other Side (TOS). News Verified by The TOS BUREAU.
+
 
